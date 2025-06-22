@@ -1121,20 +1121,20 @@ export default function ControlCivicoMovil() {
       </header>
 
       {/* Contenido Principal */}
-      <main className="max-w-5xl mx-auto py-6 sm:py-10 px-4 space-y-10">
+      <main className="max-w-5xl mx-auto py-4 sm:py-6 lg:py-10 px-3 sm:px-4 space-y-6 sm:space-y-8 lg:space-y-10">
         <Card className="shadow-lg border-blue-200 bg-white bg-decorative">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <Upload className="mr-2 h-6 w-6 text-blue-700" />
-              <span className="text-xl font-bold text-blue-800">Carga Masiva de Personas</span>
+            <CardTitle className="flex items-center flex-wrap gap-2">
+              <Upload className="h-6 w-6 text-blue-700 flex-shrink-0" />
+              <span className="text-lg sm:text-xl font-bold text-blue-800">Carga Masiva de Personas</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
-              <Label htmlFor="file-upload" className="text-blue-900">
+              <Label htmlFor="file-upload" className="text-blue-900 text-sm sm:text-base">
                 Seleccione un archivo de texto (.txt) para cargar la lista de personas.
               </Label>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <Input
                   id="file-upload"
                   type="file"
@@ -1143,7 +1143,7 @@ export default function ControlCivicoMovil() {
                   className="flex-grow file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
                 />
               </div>
-              <p className="text-sm text-gray-600 italic">
+              <p className="text-xs sm:text-sm text-gray-600 italic">
                 * El formato del archivo debe ser: `cedula nombre apellido1 apellido2` por cada línea.
               </p>
             </div>
@@ -1152,8 +1152,9 @@ export default function ControlCivicoMovil() {
         {/* Formulario de Registro de Persona */}
         <Card className="shadow-lg border-blue-200 mb-10 bg-white bg-decorative">
           <CardHeader className="pb-3 flex-row items-center justify-between">
-            <CardTitle className="text-xl font-bold text-blue-800 flex items-center gap-2">
-              <Users className="h-6 w-6" /> Registrar Persona
+            <CardTitle className="text-lg sm:text-xl font-bold text-blue-800 flex items-center gap-2 flex-wrap">
+              <Users className="h-6 w-6 flex-shrink-0" /> 
+              <span>Registrar Persona</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1193,8 +1194,9 @@ export default function ControlCivicoMovil() {
         {/* Personas Registradas */}
         <Card className="shadow-lg border-blue-200 bg-white bg-decorative">
           <CardHeader className="pb-3 flex flex-row items-center justify-between">
-            <CardTitle className="text-xl font-bold text-blue-800 flex items-center gap-2">
-              <Users className="h-6 w-6" /> Personas Registradas ({filteredPeople.length})
+            <CardTitle className="text-lg sm:text-xl font-bold text-blue-800 flex items-center gap-2 flex-wrap">
+              <Users className="h-6 w-6 flex-shrink-0" /> 
+              <span>Personas Registradas ({filteredPeople.length})</span>
             </CardTitle>
             <Button variant="outline" size="sm" onClick={() => setIsDataCollapsed(!isDataCollapsed)} className="border-blue-300">
               {isDataCollapsed ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
@@ -1219,7 +1221,7 @@ export default function ControlCivicoMovil() {
                   filteredPeople.map((person) => (
                     <div
                       key={person.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 transition-colors cursor-pointer"
+                      className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 transition-colors cursor-pointer min-w-0"
                     >
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -1229,9 +1231,9 @@ export default function ControlCivicoMovil() {
                               // This will trigger the dropdown menu
                             }}
                           >
-                            <div className="font-medium text-blue-900">
-                              {person.name}
-                              <span className="text-sm text-gray-500 ml-2">({person.cedula})</span>
+                            <div className="font-medium text-blue-900 truncate min-w-0">
+                              <span className="block truncate">{person.name}</span>
+                              <span className="text-sm text-gray-500">({person.cedula})</span>
                             </div>
                             <div className="text-xs text-gray-500 mt-1">
                               Doble clic para modificar o eliminar
