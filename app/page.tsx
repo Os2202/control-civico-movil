@@ -1219,14 +1219,24 @@ export default function ControlCivicoMovil() {
                   filteredPeople.map((person) => (
                     <div
                       key={person.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200 shadow-sm"
+                      className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 transition-colors cursor-pointer"
                     >
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="font-medium text-blue-900 justify-start w-full px-2 text-left h-auto">
-                            {person.name}
-                            <span className="text-sm text-gray-500 ml-2">({person.cedula})</span>
-                          </Button>
+                          <div 
+                            className="flex-1 cursor-pointer"
+                            onDoubleClick={() => {
+                              // This will trigger the dropdown menu
+                            }}
+                          >
+                            <div className="font-medium text-blue-900">
+                              {person.name}
+                              <span className="text-sm text-gray-500 ml-2">({person.cedula})</span>
+                            </div>
+                            <div className="text-xs text-gray-500 mt-1">
+                              Doble clic para modificar o eliminar
+                            </div>
+                          </div>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
                           <DropdownMenuItem
