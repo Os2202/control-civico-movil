@@ -29,6 +29,7 @@ import {
   Copy,
   Save,
   X,
+  MoreHorizontal,
 } from "lucide-react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
@@ -1221,26 +1222,24 @@ export default function ControlCivicoMovil() {
                   filteredPeople.map((person) => (
                     <div
                       key={person.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 transition-colors cursor-pointer min-w-0"
+                      className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 transition-colors min-w-0"
                     >
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-blue-900 truncate min-w-0">
+                          <span className="block truncate">{person.name}</span>
+                          <span className="text-sm text-gray-500">({person.cedula})</span>
+                        </div>
+                        <div className="text-xs text-gray-500 mt-1">
+                          Toca los botones para modificar o eliminar
+                        </div>
+                      </div>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <div 
-                            className="flex-1 cursor-pointer"
-                            onDoubleClick={() => {
-                              // This will trigger the dropdown menu
-                            }}
-                          >
-                            <div className="font-medium text-blue-900 truncate min-w-0">
-                              <span className="block truncate">{person.name}</span>
-                              <span className="text-sm text-gray-500">({person.cedula})</span>
-                            </div>
-                            <div className="text-xs text-gray-500 mt-1">
-                              Doble clic para modificar o eliminar
-                            </div>
-                          </div>
+                          <Button variant="outline" size="sm" className="ml-2 flex-shrink-0">
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent>
+                        <DropdownMenuContent align="end">
                           <DropdownMenuItem
                             onSelect={() => {
                               setEditingPerson(person)
